@@ -89,6 +89,9 @@ files:
         }
     }
   learner_created: false
+- name: src/bullscows/Utils.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/53/stages/287/implement#comment
 status: Unchecked
 record: -1
