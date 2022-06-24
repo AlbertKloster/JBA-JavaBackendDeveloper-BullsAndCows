@@ -5,7 +5,7 @@ import java.util.*;
 public class Utils {
     private static Scanner SC = new Scanner(System.in);
 
-    public static String getInt(int digits) {
+    public static String getNumber(int digits) {
         String input = SC.nextLine();
         String regex = String.format("\\d{%d}", digits);
         if (input.matches(regex))
@@ -14,11 +14,25 @@ public class Utils {
             return null;
     }
 
+    public static int getCodeLength() {
+        String input = SC.nextLine();
+        if (input.matches("\\d"))
+            return Integer.parseInt(input);
+        else {
+            System.out.printf("Error: can't generate a secret number with a length of %s because there aren't enough unique digits.", input);
+            return -1;
+        }
+    }
+
     public static String getSecretCode(int digits) {
         Random random = new Random();
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < digits; i++) {
-            builder.append(random.nextInt(10));
+        StringBuilder builder = new StringBuilder(String.valueOf(random.nextInt(9) + 1)); // first digit can not be 0
+        for (int i = 0; i < digits - 1; ) {
+            int digit = random.nextInt(10);
+            if (builder.indexOf(String.valueOf(digit)) < 0) {
+                i++;
+                builder.append(digit);
+            }
         }
         return builder.toString();
     }

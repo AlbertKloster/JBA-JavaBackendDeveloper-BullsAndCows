@@ -5,10 +5,10 @@ import static bullscows.Utils.*;
 
 public class Main {
     public static void main(String[] args) {
-        String secretCode = getSecretCode(4);
-        String number = getInt(4);
-        int bulls = getBulls(secretCode, number);
-        int cows = getCows(secretCode, number);
-        printResult(secretCode, bulls, cows);
+        int codeLength = getCodeLength();
+        if (codeLength > 0) {
+            String secretCode = getSecretCode(codeLength);
+            System.out.printf("The random secret number is %s.", secretCode);
+        }
     }
 }
