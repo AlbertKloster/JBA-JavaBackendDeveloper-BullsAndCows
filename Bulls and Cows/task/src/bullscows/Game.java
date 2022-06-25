@@ -17,7 +17,7 @@ public class Game {
         String number = Input.getNumber(secretCode.length());
         int bulls = getBulls(secretCode, number);
         int cows = getCows(secretCode, number);
-        System.out.println(getMessage(secretCode, bulls, cows));
+        System.out.println(getMessage(bulls, cows));
         return secretCode.length() == bulls;
     }
 
@@ -47,7 +47,7 @@ public class Game {
         return builder.toString();
     }
 
-    private static String getMessage(String secretCode, int bulls, int cows) {
+    private static String getMessage(int bulls, int cows) {
         if (bulls == 0 && cows == 0)
             return "Grade: None.";
         if (cows == 0)

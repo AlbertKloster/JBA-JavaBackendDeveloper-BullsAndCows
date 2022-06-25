@@ -20,7 +20,7 @@ public class SecretCode {
 
     public String next() {
         Random random = new Random();
-        StringBuilder builder = new StringBuilder(nextInt(1, 10)); // first digit can not be 0
+        StringBuilder builder = new StringBuilder(nextInt(codeLength == 1 ? 0 : 1, 10)); // first digit can not be 0
         for (int i = 0; i < codeLength - 1; ) {
             int digit = random.nextInt(10);
             if (isNotPresent(builder, digit)) {
