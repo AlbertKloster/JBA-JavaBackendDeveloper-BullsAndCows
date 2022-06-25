@@ -4,40 +4,37 @@ import java.util.Random;
 
 public class SecretCode {
 
+    private final int ASCII_ZERO = 48;
+    private final int ASCII_A_SMALL = 97;
+
     private int codeLength;
+    private int numberOfPossibleSymbols;
 
-    public SecretCode(int codeLength) {
+    public SecretCode(int codeLength, int numberOfPossibleSymbols) {
         this.codeLength = codeLength;
-    }
-
-    public int getCodeLength() {
-        return codeLength;
-    }
-
-    public void setCodeLength(int codeLength) {
-        this.codeLength = codeLength;
+        this.numberOfPossibleSymbols = numberOfPossibleSymbols;
     }
 
     public String next() {
         Random random = new Random();
-        StringBuilder builder = new StringBuilder(nextInt(codeLength == 1 ? 0 : 1, 10)); // first digit can not be 0
-        for (int i = 0; i < codeLength - 1; ) {
-            int digit = random.nextInt(10);
-            if (isNotPresent(builder, digit)) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < codeLength; ) {
+            int digit = random.nextInt(numberOfPossibleSymbols);
+            char symbol = getSymbol(digit);
+            if (isNotPresent(builder, symbol)) {
                 i++;
-                builder.append(digit);
+                builder.append(symbol);
             }
         }
         return builder.toString();
     }
 
-    private String nextInt(int min, int max) {
-        Random random = new Random();
-        return String.valueOf(random.nextInt(max - min) + min);
+    private char getSymbol(int digit) {
+        return (char) (digit + (digit < 10 ? ASCII_ZERO : ASCII_A_SMALL - 10));
     }
 
     private boolean isNotPresent(StringBuilder builder, int digit) {
-        return builder.indexOf(String.valueOf(digit)) < 0;
+        return builder.indexOf(String.valueOf((char)digit)) < 0;
     }
 
 }
