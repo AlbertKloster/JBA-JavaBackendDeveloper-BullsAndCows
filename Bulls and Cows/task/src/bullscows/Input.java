@@ -25,6 +25,7 @@ public class Input {
             else
                 return codeLength;
         }
+        System.out.printf("Error: \"%s\" isn't a valid number.", input);
         return -1;
     }
 
@@ -33,10 +34,11 @@ public class Input {
         if (input.matches("\\d+")) {
             int numberOfPossibleSymbols = Integer.parseInt(input);
             if (numberOfPossibleSymbols > MAX_CODE_LENGTH)
-                System.out.printf("Error: can't generate a secret code with a length of %s because there aren't enough unique symbols.", input);
+                System.out.println("Error: maximum number of possible symbols in the code is 36 (0-9, a-z).");
             else
                 return numberOfPossibleSymbols;
         }
+        System.out.printf("Error: \"%s\" isn't a valid number.", input);
         return -1;
     }
 

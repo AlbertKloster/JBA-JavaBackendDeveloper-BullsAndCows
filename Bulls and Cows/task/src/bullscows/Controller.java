@@ -6,9 +6,18 @@ public class Controller {
     public static void run() {
         System.out.println("Input the length of the secret code:");
         int codeLength = Input.getCodeLength();
+        if (codeLength == -1)
+            return;
         System.out.println("Input the number of possible symbols in the code:");
         int numberOfPossibleSymbols = Input.getNumberOfPossibleSymbols();
-        if (codeLength != -1 && numberOfPossibleSymbols != -1) {
+        if (numberOfPossibleSymbols == -1)
+            return;
+        if (codeLength == 0)
+            System.out.println("Error: code length should be more than 0.");
+        else if (codeLength > numberOfPossibleSymbols) {
+            System.out.printf("Error: it's not possible to generate a code with a length of %d with %d unique symbols.",
+                    codeLength, numberOfPossibleSymbols);
+        } else {
             SecretCode secretCode = new SecretCode(codeLength, numberOfPossibleSymbols);
             printMessage(codeLength, numberOfPossibleSymbols);
             Game.start(secretCode.next());
@@ -16,7 +25,7 @@ public class Controller {
     }
 
     private static void printMessage(int codeLength, int numberOfPossibleSymbols) {
-        System.out.printf("The secret is prepared: %s %s.", getAsterisks(codeLength), getSymbols(numberOfPossibleSymbols));
+        System.out.printf("The secret is prepared: %s %s.\n", getAsterisks(codeLength), getSymbols(numberOfPossibleSymbols));
     }
 
     private static String getAsterisks(int codeLength) {

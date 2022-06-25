@@ -7,8 +7,8 @@ public class SecretCode {
     private final int ASCII_ZERO = 48;
     private final int ASCII_A_SMALL = 97;
 
-    private int codeLength;
-    private int numberOfPossibleSymbols;
+    private final int codeLength;
+    private final int numberOfPossibleSymbols;
 
     public SecretCode(int codeLength, int numberOfPossibleSymbols) {
         this.codeLength = codeLength;
